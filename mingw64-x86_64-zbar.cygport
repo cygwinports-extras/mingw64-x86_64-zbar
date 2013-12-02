@@ -1,0 +1,37 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross
+
+NAME="mingw64-x86_64-zbar"
+VERSION=0.10
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="Barcode decoder for Win64 toolchain"
+DESCRIPTION="ZBar is an open source software suite for reading bar codes from
+various sources, such as video streams, image files and raw intensity sensors.
+It supports many popular symbologies (types of bar codes) including EAN-13,
+UPC-A, UPC-E, EAN-8, Code 128, Code 39, Interleaved 2 of 5 and QR Code."
+HOMEPAGE="http://zbar.sourceforge.net/"
+SRC_URI="mirror://sourceforge/zbar/zbar-${VERSION}.tar.bz2"
+SRC_DIR="zbar-${VERSION}"
+PATCH_URI="
+	0.10-no-undefined.patch
+	0.10-mingw64.patch
+"
+
+# gtk, qt: only for X11 targets
+CYGCONF_ARGS="
+	--disable-pthread
+	--without-gtk
+	--without-imagemagick
+	--without-npapi
+	--without-python
+	--without-qt
+	--without-x
+	--without-xshm
+	--without-xv
+"
+
+src_install() {
+	cd ${B}
+	cyginstall bin_PROGRAMS= dist_man_MANS= pkgdata_DATA=
+}
