@@ -3,7 +3,7 @@ inherit cross
 
 NAME="mingw64-x86_64-zbar"
 VERSION=0.10
-RELEASE=1
+RELEASE=2
 CATEGORY="Devel"
 SUMMARY="Barcode decoder for Win64 toolchain"
 DESCRIPTION="ZBar is an open source software suite for reading bar codes from
